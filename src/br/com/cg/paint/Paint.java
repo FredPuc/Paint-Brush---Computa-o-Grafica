@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Paint extends JFrame implements MouseListener {
+public class Paint extends JFrame implements MouseListener, ActionListener {
 
 	private int pixelSize = 5, counter = 0;
 	private int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
@@ -28,12 +28,18 @@ public class Paint extends JFrame implements MouseListener {
 		c.setLayout(new BorderLayout());
 		c.addMouseListener(this);
 		setVisible(true);
-//		JPanel panel = new JPanel();
-//		c.add(panel);
-//		JButton ddaButton = new JButton("DDA Rastering Algorithm");
-//		ddaButton.setSize(10,10);
-//		ddaButton.setVisible(true);
-//		panel.add(ddaButton);
+		JPanel panel = new JPanel();
+		c.add(panel);
+		JButton ddaButton = new JButton("DDA Rastering Algorithm");
+		ddaButton.setSize(10,10);
+		ddaButton.setVisible(true);
+		ddaButton.addActionListener(this);
+		JButton bresenhamButton = new JButton("Bresenham Rastering Algorithm");
+		bresenhamButton.setSize(10,10);
+		bresenhamButton.setVisible(true);
+		bresenhamButton.addActionListener(this);
+		panel.add(ddaButton);
+		panel.add(bresenhamButton);
 
 	
 
@@ -115,6 +121,26 @@ public class Paint extends JFrame implements MouseListener {
 
 	public static void main(String[] args) {
 		Paint paint = new Paint();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String paramString[] = e.paramString().split(",");
+		String option = paramString[1].replace("cmd=", "");
+		
+		switch(option) {
+			
+		case "DDA Rastering Algorithm":
+				System.out.println("=== Do Something ===");
+				break;
+				
+		case "Bresenham Rastering Algorithm":
+				System.out.println("=== Do Something ===");
+				break;		
+		}
+
+
+		
 	}
 
 	
